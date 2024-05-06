@@ -1,6 +1,10 @@
 NAME = minishell
+
 CC = gcc
-CFLAGS := -Wall -Wextra -Werror
+READLINE_PATH = /Users/pcardin/.local/opt/readline
+CFLAGS = -I$(READLINE_PATH)/include -Wall -Wextra -Werror
+LDFLAGS = -L$(READLINE_PATH)/lib -lreadline
+
 SOURCE = \
 	Main/main.c
 
@@ -10,7 +14,7 @@ LIBFT = Libft/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJECTS) -L libft -lft -o $(NAME) -lreadline
+	@$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -L libft -lft -o $(NAME) -lreadline
 
 $(LIBFT):
 	@make -C Libft

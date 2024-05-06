@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 			break ;
 		}
 		else
-			ft_printf("input: %s\n", input);
+		ft_printf("input: %s\n", input);
 		free(input);
 	}
 }

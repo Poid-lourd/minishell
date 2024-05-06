@@ -6,7 +6,7 @@
 /*   By: pcardin <pcardin@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:09:27 by pcardin           #+#    #+#             */
-/*   Updated: 2024/05/01 12:03:10 by pcardin          ###   ########.fr       */
+/*   Updated: 2024/05/06 10:55:00 by pcardin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,16 @@
 # include <stdio.h>
 # include <errno.h>
 # include <fcntl.h>
-# include <readline/readline.h>
 # include <readline/history.h>
+# include <readline/readline.h>
+# include <signal.h>
 # include "libft/libft.h"
+
+// typedef struct s_sigaction
+// {
+// 	void		(*sa_handler)(int);
+// 	sigset_t	sa_mask;
+// 	int			sa_flags;
+// }	t_sigaction;
 
 #endif
