@@ -6,7 +6,7 @@
 /*   By: pcardin <pcardin@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:40:24 by pcardin           #+#    #+#             */
-/*   Updated: 2024/04/01 20:29:43 by pcardin          ###   ########.fr       */
+/*   Updated: 2024/05/08 11:32:42 by pcardin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
+char	**ft_split_ws(char const *s, char c);
 
 /* printf */
 
