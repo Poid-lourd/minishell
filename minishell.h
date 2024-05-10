@@ -6,7 +6,7 @@
 /*   By: pcardin <pcardin@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:09:27 by pcardin           #+#    #+#             */
-/*   Updated: 2024/05/08 16:12:58 by pcardin          ###   ########.fr       */
+/*   Updated: 2024/05/10 14:13:50 by pcardin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,24 @@ typedef	struct s_data
 {
 	char	**input;
 	char	**paths;
+	char	**redir;
 	char	**cmds;
-	
+
+	char	*in_path;
+	char	*out_path;
 	int		fds[2];
 	int		prevpipe;
 	pid_t	*pid;
 }	t_data;
 
-int		execution(t_data **data, char *input, char **envp);
+int		execution(char *input, t_data **data, char **envp);
 void	init_struct(t_data **data);
 void	parsing(t_data **data, char *input, char **envp);
 char	*find_cmd_path(t_data **data, int i);
 void	extract_bin_paths(char **envp, t_data **data);
 
 void	pipe_err(t_data **data);
-void	fork_err(t_data **data, int i);
+void	check_fork_err(pid_t pid);
 
 // typedef struct s_sigaction
 // {

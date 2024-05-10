@@ -6,7 +6,7 @@
 #    By: pcardin <pcardin@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 10:43:57 by pcardin           #+#    #+#              #
-#    Updated: 2024/05/08 11:35:09 by pcardin          ###   ########.fr        #
+#    Updated: 2024/05/10 13:53:27 by pcardin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SOURCES = \
 	ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	ft_striteri.c ft_itoa.c ft_split.c ft_isdigit2.c ft_strjoin2.c ft_strtrim2.c \
 	ft_print_c.c ft_print_i.c ft_print_p.c ft_print_s.c ft_print_x.c ft_printf.c \
-	get_next_line.c get_next_line_utils.c ft_split_ws.c \
+	get_next_line.c get_next_line_utils.c ft_split_ws.c ft_split_coma.c \
 
 OBJECTS = $(patsubst %.c,obj_dir/%.o,$(SOURCES))
 CC = gcc

@@ -6,7 +6,7 @@
 /*   By: pcardin <pcardin@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 17:01:11 by pcardin           #+#    #+#             */
-/*   Updated: 2024/05/08 18:01:54 by pcardin          ###   ########.fr       */
+/*   Updated: 2024/05/10 10:41:55 by pcardin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ int	is_cmd(char *path)
 
 void	pipe_err(t_data **data)
 {
-	if (pipe ((*data)->fds) == -1)
+	if (pipe((*data)->fds) == -1)
 	{
 		perror("pipe");
 		exit(errno);
 	}
 }
 
-void	fork_err(t_data **data, int i)
+void	check_fork_err(pid_t pid)
 {
-	(*data)->pid[i] = fork();
-	if ((*data)->pid < 0)
+	if (pid < 0)
 	{
 		perror("fork");
 		exit(errno);
@@ -47,7 +46,7 @@ char	*find_cmd_path(t_data **data, int i)
 	j = 0;
 	while (j < 8)
 	{
-		path = ft_strjoin2((*data)->paths[j], (*data)->input[i]);
+		path = ft_strjoin2((*data)->paths[j], (*data)->cmds[i]);
 		if (!path)
 			return (NULL);
 		accss = access(path, X_OK);
