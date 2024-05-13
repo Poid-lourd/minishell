@@ -6,7 +6,7 @@
 /*   By: pcardin <pcardin@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 14:37:18 by pcardin           #+#    #+#             */
-/*   Updated: 2024/05/10 16:39:50 by pcardin          ###   ########.fr       */
+/*   Updated: 2024/05/13 11:01:29 by pcardin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	redirect_output(t_data **data)
 		perror("outfile");
 		exit(0);
 	}
-	PL;
 	dup2(fd_out, STDOUT_FILENO);
 }
 
@@ -60,15 +59,15 @@ void	cmd_exec(t_data **data, char **envp, char *path, int i)
 	}
 }
 
-// void	cmd_not_found(t_data **data, int i)
-// {
-	// (void)i;
-	// ft_printf("minishell: %s: command not found\n", (*data)->cmds[i]);
-	// close((*data)->prevpipe);
-	// (*data)->prevpipe = dup((*data)->fds[0]);
-	// close((*data)->fds[1]);
-	// close((*data)->fds[0]);
-// } infile, wc | cat,outfile
+void	cmd_not_found(t_data **data, int i)
+{
+	(void)i;
+	ft_printf("minishell: %s: command not found\n", (*data)->cmds[i]);
+	close((*data)->prevpipe);
+	(*data)->prevpipe = dup((*data)->fds[0]);
+	close((*data)->fds[1]);
+	close((*data)->fds[0]);
+} 
 
 int	execution(char *input, t_data **data, char **envp)
 {
@@ -79,12 +78,6 @@ int	execution(char *input, t_data **data, char **envp)
 	(*data)->prevpipe = open((*data)->in_path, O_RDONLY);
 	while (++i < CMDS)
 	{
-		path = find_cmd_path(data, i);
-		// if ((*data)->cmds[i] == NULL)
-			// cmd_not_found(data, i);
-		printf("path: %s\n", path);
-		if (path)
-			cmd_exec(data, envp, path, i);
 		if (!ft_strncmp(input, "clear", ft_strlen("clear")))
 			ft_printf("\033[H\033[J");
 		else if (!ft_strncmp(input, "exit", ft_strlen("exit")))
@@ -92,7 +85,17 @@ int	execution(char *input, t_data **data, char **envp)
 			ft_printf("exit\n");
 			return (1);
 		}
+		else
+		{
+			path = find_cmd_path(data, i);
+			if (path == NULL)
+				cmd_not_found(data, i);
+			if (path)
+				cmd_exec(data, envp, path, i);
+		}
 	}
 	close((*data)->prevpipe);
 	return (0);
 }
+
+// infile, wc | cat ,outfile

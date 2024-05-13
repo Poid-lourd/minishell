@@ -6,7 +6,7 @@
 /*   By: pcardin <pcardin@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 09:29:44 by pcardin           #+#    #+#             */
-/*   Updated: 2024/05/10 14:02:44 by pcardin          ###   ########.fr       */
+/*   Updated: 2024/05/13 10:46:54 by pcardin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static void	ft_allocate(char **tab, char const *s, char sep)
 		while (*s == sep || *s == ' ')
 			s++;
 		tmp = s;
-		while (*tmp && (*tmp != sep))
-			tmp++;
+		while (*tmp && (*tmp != sep && *tmp != ' '))
+			tmp++; 	
 		if (*tmp == sep || tmp > s)
 		{
 			*tab_p = ft_substr(s, 0, tmp - s);

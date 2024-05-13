@@ -6,7 +6,7 @@
 /*   By: pcardin <pcardin@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:08:39 by pcardin           #+#    #+#             */
-/*   Updated: 2024/05/10 15:50:28 by pcardin          ###   ########.fr       */
+/*   Updated: 2024/05/13 10:49:11 by pcardin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int main(int argc, char **argv, char **envp)
 	init_struct(&data);
 	extract_bin_paths(envp, &data);
 	i = 0;
+	while (1)
+	{
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, SIG_IGN);
 		// sigaction(SIGINT, );
@@ -38,8 +40,9 @@ int main(int argc, char **argv, char **envp)
 		add_history(input);
 		parsing(&data, input, envp);
 		if (execution(input, &data, envp))
-			return (1);
+			exit (1);
 		if (input)
 			free(input);
+	}
 	return (0);
 }
